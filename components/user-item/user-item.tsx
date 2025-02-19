@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "../button/button";
 import { useRouter } from "next/navigation";
 import { cx } from "class-variance-authority";
+import { Link } from "lucide-react";
 
 interface UserItemProps extends HTMLAttributes<HTMLDivElement> {
   item: GitHubUser;
@@ -15,7 +16,7 @@ export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(
     const router = useRouter();
 
     const handleRepository = () => {
-      router.push(`/users/${item.login}`);
+      router.push(`/${item.login}`);
     };
     return (
       <div
@@ -33,6 +34,8 @@ export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(
         <div className={styles.userInfo}>
           <div className={styles.login}>{item.login}</div>
           <div>
+            <Link size={12} />
+            &nbsp;
             <a href={item.htmlUrl} target="_blank" className={styles.url}>
               {item.htmlUrl}
             </a>

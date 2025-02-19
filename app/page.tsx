@@ -61,7 +61,7 @@ export default function Home() {
             {store.totalCount} users found
           </div>
         )}
-        <ListUser items={store.items} />
+        <ListUser />
       </main>
     </div>
   );

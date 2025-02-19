@@ -1,16 +1,16 @@
-import { GitHubUser } from "@/domains/github-user/github-user";
 import React, { HTMLAttributes } from "react";
 import { UserItem } from "../user-item/user-item";
 import { forwardRef } from "react";
 import styles from "./list-user.module.css";
 import { cx } from "class-variance-authority";
+import { useUsersStore } from "@/stores/users-store";
 
-interface ListUserProps extends HTMLAttributes<HTMLDivElement> {
-  items?: GitHubUser[];
-}
+type ListUserProps = HTMLAttributes<HTMLDivElement>;
 
 export const ListUser = forwardRef<HTMLDivElement, ListUserProps>(
-  ({ items, ...props }, ref) => {
+  ({ ...props }, ref) => {
+    const store = useUsersStore();
+    const items = store.items;
     return (
       <div
         ref={ref}
