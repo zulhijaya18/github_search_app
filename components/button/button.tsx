@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import styles from "./button.module.css";
+import { cx } from "class-variance-authority";
 
 type ButtonProps = React.ComponentProps<"button"> & {
   type?: "button" | "submit" | "reset";
@@ -7,7 +8,14 @@ type ButtonProps = React.ComponentProps<"button"> & {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ type = "button", ...props }, ref) => {
-    return <button ref={ref} type={type} className={styles.button} {...props} />;
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={cx(styles.button, props.className)}
+        {...props}
+      />
+    );
   }
 );
 

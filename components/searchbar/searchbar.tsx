@@ -1,5 +1,3 @@
-"use client";
-
 import React, { forwardRef, InputHTMLAttributes } from "react";
 import { Input } from "@/components/input/input";
 

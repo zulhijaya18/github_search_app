@@ -1,10 +1,11 @@
 .input {
     width: 100%;
-    padding: 4px 12px;
+    padding: 8px 12px;
     border: 1px solid var(--button-primary-hover);
     border-radius: 8px;
     outline: none;
     transition: border-color 0.2s ease;
+    font-size: 14px;
 }
 
 .input:focus {

@@ -6,6 +6,8 @@ export interface GitHubUser {
     htmlUrl: string;
     type: string;
     reposUrl: string;
+    score: number;
+    avatarUrl: string;
 }
 
 export interface GitHubUserQuery {

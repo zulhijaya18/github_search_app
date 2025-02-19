@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import styles from "./input.module.css";
+import { cx } from "class-variance-authority";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
@@ -7,7 +8,14 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ type = "text", ...props }, ref) => {
-    return <input type={type} ref={ref} className={styles.input} {...props} />;
+    return (
+      <input
+        type={type}
+        ref={ref}
+        className={cx(styles.input, props.className)}
+        {...props}
+      />
+    );
   }
 );
 

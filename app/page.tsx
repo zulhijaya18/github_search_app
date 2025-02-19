@@ -6,21 +6,30 @@ import { Searchbar } from "@/components/searchbar/searchbar";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { apiClient } from "@/utils/api-client";
+import { ListUser } from "@/components/list-user/list-user";
+import { UsersResponse } from "@/types/users-response";
+import { useUsersStore } from "@/stores/users-store";
 
 export default function Home() {
+  const store = useUsersStore();
+  const [search, setSearch] = useState("");
   const { mutate } = useMutation({
     mutationFn: async () => {
-      const response = await apiClient.get(`/api/users`, {
+      const response = await apiClient.get<UsersResponse>(`/api/users`, {
         params: {
           q: search,
         },
       });
-      const data = await response.data;
-      console.log(data);
+      return response.data;
+    },
+    onSuccess: (data) => {
+      store.setItems(data.items);
+      store.setTotalCount(data.totalCount);
     },
   });
 
   const handleSearch = () => {
+    if (!search) return;
     mutate();
   };
 
@@ -30,14 +39,12 @@ export default function Home() {
     }
   };
 
-  const [search, setSearch] = useState("");
-
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <div>
           <h1>GitHub Search</h1>
-          <p>Search for GitHub users and repositories</p>
+          <p>Find GitHub users based on a keyword</p>
         </div>
         <div className={styles.searchContainer}>
           <Searchbar
@@ -49,8 +56,13 @@ export default function Home() {
             Search
           </Button>
         </div>
+        {store.items && store.items.length > 0 && (
+          <div className={styles.itemsFound}>
+            {store.totalCount} users found
+          </div>
+        )}
+        <ListUser items={store.items} />
       </main>
-      <footer className={styles.footer}></footer>
     </div>
   );
 }

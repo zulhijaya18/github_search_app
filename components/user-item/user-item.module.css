@@ -1,0 +1,33 @@
+.userItem {
+    display: flex;
+    padding: 8px;
+    border: 1px solid var(--button-primary-hover);
+    border-radius: 8px;
+    gap: 8px;
+}
+
+.userItem:hover {
+    background-color: var(--button-secondary-hover);
+}
+
+.avatar {
+    border-radius: 4px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+a.url {
+    text-decoration: none;
+    color: var(--anchor);
+}
+
+.repositoryButtonContainer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
