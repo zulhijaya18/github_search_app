@@ -40,7 +40,7 @@ export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(
         </div>
         <div className={styles.repositoryButtonContainer}>
           <Button type="button" onClick={handleRepository}>
-            Repository
+            Open Repositories
           </Button>
         </div>
       </div>

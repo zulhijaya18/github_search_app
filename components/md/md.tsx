@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState, ReactNode } from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import styles from "./md.module.css";
@@ -7,6 +8,7 @@ import { usePathname } from "next/navigation";
 import remarkGfm from "remark-gfm";
 import { transformImageUri } from "@/utils/image-github-transform";
 import { useRepositoriesStore } from "@/stores/repositories-store";
+import { CodeBlock } from "../codeblock/codeblock";
 
 interface MDProps {
   content: string;
@@ -17,8 +19,6 @@ export default function MD(props: MDProps) {
   const pathname = usePathname();
   const [username, repositoryName] = pathname.split("/").filter(Boolean);
   const store = useRepositoriesStore();
-
-  console.log(store.repository?.defaultBranch);
 
   return (
     <Markdown
@@ -41,6 +41,22 @@ export default function MD(props: MDProps) {
               loading="lazy"
             />
           );
+        },
+        pre({ children, ...props }) {
+          return (
+            <pre {...props} className={styles.pre}>
+              <code>{children}</code>
+            </pre>
+          );
+        },
+        code({ inline, className, children }) {
+          if (inline || !className) {
+            return children;
+          }
+          const match = /language-(\w+)/.exec(className);
+          const code = String(children).replace(/\n$/, "");
+
+          return <CodeBlock code={code} language={match?.[1]} />;
         },
       }}
     >

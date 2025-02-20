@@ -9,10 +9,11 @@ import { useRepositoriesStore } from "@/stores/repositories-store";
 
 interface RepositoryItemProps extends HtmlHTMLAttributes<HTMLDivElement> {
   item: GitHubRepository;
+  showButton?: boolean;
 }
 
 export const RepositoryItem = forwardRef<HTMLDivElement, RepositoryItemProps>(
-  ({ item, ...props }, ref) => {
+  ({ item, showButton = true, ...props }, ref) => {
     const router = useRouter();
     const store = useRepositoriesStore();
     const handleReadMeButton = () => {
@@ -55,11 +56,13 @@ export const RepositoryItem = forwardRef<HTMLDivElement, RepositoryItemProps>(
             )}
           </div>
         </div>
-        <div className={styles.readMeButton}>
-          <Button type="button" onClick={handleReadMeButton}>
-            Read me
-          </Button>
-        </div>
+        {showButton && (
+          <div className={styles.readMeButton}>
+            <Button type="button" onClick={handleReadMeButton}>
+              Open ReadMe
+            </Button>
+          </div>
+        )}
       </div>
     );
   }
