@@ -1,0 +1,35 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.reposOwner {
+    border-radius: 8px;
+    display: flex;
+    gap: 12px;
+}
+
+.avatar {
+    border-radius: 8px;
+}
+
+.textIcon {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+@media (max-width: 600px) {
+    .main {
+        align-items: center;
+    }
+}

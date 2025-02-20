@@ -4,6 +4,8 @@ import styles from "./repository-item.module.css";
 import { cx } from "class-variance-authority";
 import { BookA, GitFork, Scale, Star } from "lucide-react";
 import { Button } from "../button/button";
+import { useRouter } from "next/navigation";
+import { useRepositoriesStore } from "@/stores/repositories-store";
 
 interface RepositoryItemProps extends HtmlHTMLAttributes<HTMLDivElement> {
   item: GitHubRepository;
@@ -11,6 +13,12 @@ interface RepositoryItemProps extends HtmlHTMLAttributes<HTMLDivElement> {
 
 export const RepositoryItem = forwardRef<HTMLDivElement, RepositoryItemProps>(
   ({ item, ...props }, ref) => {
+    const router = useRouter();
+    const store = useRepositoriesStore();
+    const handleReadMeButton = () => {
+      store.setRepository(item);
+      router.push(`/${item.fullName}`);
+    };
     return (
       <div
         ref={ref}
@@ -48,7 +56,9 @@ export const RepositoryItem = forwardRef<HTMLDivElement, RepositoryItemProps>(
           </div>
         </div>
         <div className={styles.readMeButton}>
-          <Button type="button">Read me</Button>
+          <Button type="button" onClick={handleReadMeButton}>
+            Read me
+          </Button>
         </div>
       </div>
     );

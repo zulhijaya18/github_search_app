@@ -13,6 +13,7 @@ export interface GitHubRepository {
   forksCount: number;
   language?: string;
   license?: License;
+  defaultBranch: string;
   createdAt: string;
   updatedAt: string;
   pushedAt: string;
