@@ -1,24 +1,15 @@
 import { apiCall } from "@/utils/api-call";
-import {
-  convertObjectToCamelCase,
-} from "@/utils/converter";
+import { convertObjectToCamelCase } from "@/utils/converter";
 import { NextRequest } from "next/server";
-
-interface Params {
-  username: string;
-}
 
 /**
  * Get user repositories
  * @example
  * GET /api/users/github
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Params }
-) {
+export async function GET(request: NextRequest) {
   try {
-    const { username } = await params;
+    const username = request.url.split("/").pop();
 
     if (!username) {
       return new Response("Missing username parameter", { status: 400 });

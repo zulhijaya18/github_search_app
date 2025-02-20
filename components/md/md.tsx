@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, ReactNode } from "react";
+import React, { useState, ReactNode, ComponentProps } from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import styles from "./md.module.css";
@@ -49,9 +49,9 @@ export default function MD(props: MDProps) {
             </pre>
           );
         },
-        code({ inline, className, children }) {
-          if (inline || !className) {
-            return children;
+        code({ className, children, ...props }) {
+          if (!className) {
+            return <code {...props}>{children}</code>;
           }
           const match = /language-(\w+)/.exec(className);
           const code = String(children).replace(/\n$/, "");
