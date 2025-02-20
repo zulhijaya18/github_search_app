@@ -19,14 +19,22 @@
 }
 
 .name {
-    /* cursor: pointer; */
+    max-width: 80vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.description, .language, .stargazersCount, .watchersCount, .forksCount, .license {
+.description,
+.language,
+.stargazersCount,
+.watchersCount,
+.forksCount,
+.license {
     font-size: 12px;
     display: flex;
     align-items: center;
     gap: 4px;
+    max-width: 80vw;
 }
 
 .repositoryHighLight {
@@ -37,4 +45,26 @@
 
 .readMeButton {
     text-wrap: nowrap;
+}
+
+@media (max-width: 768px) {
+    .repositoryItemContainer {
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .repositoryItemContainer {
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+    }
+
+    .repositoryHighLight {
+        flex-direction: column;
+        gap: 8px;
+        padding-bottom: 8px;
+    }
 }

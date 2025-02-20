@@ -2,8 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
-    max-width: 600px;
-    width: 100%;
 }
 
 .reposOwner {
@@ -32,8 +30,20 @@
     gap: 4px;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 768px) {
     .main {
-        align-items: center;
+        width: 720px;
     }
 }
+
+@media (max-width: 768px) {
+    .main h1 {
+        font-size: 2rem;
+    }
+
+    .main p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {}

@@ -26,18 +26,20 @@ export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(
       <div
         ref={ref}
         {...props}
-        className={cx(styles.userItem, props.className)}
+        className={cx(styles.userItemContainer, props.className)}
       >
-        <Image
-          src={item.avatarUrl}
-          width={45}
-          height={45}
-          alt={"Avatar"}
-          className={styles.avatar}
-        />
-        <div className={styles.userInfo}>
-          <div className={styles.login}>{item.login}</div>
-          <GitHubLink href={item.htmlUrl} />
+        <div className={styles.userItem}>
+          <Image
+            src={item.avatarUrl}
+            width={45}
+            height={45}
+            alt={"Avatar"}
+            className={styles.avatar}
+          />
+          <div className={styles.userInfo}>
+            <div className={styles.login}>{item.login}</div>
+            <GitHubLink href={item.htmlUrl} />
+          </div>
         </div>
         <div className={styles.repositoryButtonContainer}>
           <Button type="button" onClick={handleRepository}>

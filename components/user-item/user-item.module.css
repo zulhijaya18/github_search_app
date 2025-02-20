@@ -1,8 +1,15 @@
-.userItem {
+.userItemContainer {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 8px;
     border: 1px solid var(--button-primary-hover);
     border-radius: 8px;
+    overflow: hidden;
+}
+
+.userItem {
+    display: flex;
     gap: 8px;
 }
 
@@ -26,9 +33,13 @@ a.url {
 }
 
 .repositoryButtonContainer {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     text-wrap: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+    .userItemContainer {
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+    }
 }

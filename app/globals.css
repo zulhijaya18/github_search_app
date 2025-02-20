@@ -31,7 +31,6 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 body {
@@ -40,16 +39,15 @@ body {
 }
 
 .page {
-  display: grid;
+  display: flex;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
   min-height: 100svh;
   padding: 32px;
   padding-bottom: 80px;
   font-family: var(--font-geist-sans);
   caret-color: var(--foreground);
 }
-
 
 * {
   box-sizing: border-box;
@@ -72,5 +70,17 @@ p {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 36px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 24px 4px;
   }
 }
