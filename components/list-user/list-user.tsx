@@ -3,14 +3,16 @@ import { UserItem } from "../user-item/user-item";
 import { forwardRef } from "react";
 import styles from "./list-user.module.css";
 import { cx } from "class-variance-authority";
-import { useUsersStore } from "@/stores/users-store";
+import { GitHubUser } from "@/domains/github-user/github-user";
 
-type ListUserProps = HTMLAttributes<HTMLDivElement>;
+type ListUserProps = HTMLAttributes<HTMLDivElement> & {
+  items?: GitHubUser[];
+  isFetching?: boolean;
+  observer?: (node: HTMLDivElement) => void;
+};
 
 export const ListUser = forwardRef<HTMLDivElement, ListUserProps>(
-  ({ ...props }, ref) => {
-    const store = useUsersStore();
-    const { items, isFetching } = store;
+  ({ observer, items, isFetching, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -18,10 +20,10 @@ export const ListUser = forwardRef<HTMLDivElement, ListUserProps>(
         className={cx(styles.listUser, props.className)}
       >
         {items?.map((item) => (
-          <UserItem key={item.id} item={item} />
+          <UserItem key={item.id} item={item} ref={observer} />
         ))}
         {isFetching && <div>Loading...</div>}
-        {items?.length === 0 && <div>No users found</div>}
+        {items && items?.length === 0 && <div>No users found</div>}
       </div>
     );
   }

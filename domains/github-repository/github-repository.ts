@@ -26,3 +26,9 @@ export interface License {
   spdxId: string;
   url: string;
 }
+
+export interface GitHubRepositoryQuery {
+  username: string;
+  page?: number;
+  perPage?: number;
+}

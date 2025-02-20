@@ -7,6 +7,7 @@ export interface GitHubUser {
     type: string;
     reposUrl: string;
     score: number;
+    publicRepos: number;
     avatarUrl: string;
 }
 
