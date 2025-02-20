@@ -6,6 +6,13 @@ import {
 } from "@/utils/converter";
 import { NextRequest } from "next/server";
 
+/**
+ * Get user repositories
+ * @example
+ * GET /api/users?q=github
+ * GET /api/users?q=github&page=1
+ * GET /api/users?q=github&perPage=10
+ */
 export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.url);

@@ -1,0 +1,10 @@
+.githubLink {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.url {
+    text-decoration: none;
+    color: var(--anchor);
+}

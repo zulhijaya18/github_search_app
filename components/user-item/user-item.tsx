@@ -5,7 +5,8 @@ import Image from "next/image";
 import { Button } from "../button/button";
 import { useRouter } from "next/navigation";
 import { cx } from "class-variance-authority";
-import { Link } from "lucide-react";
+import { useRepositoriesStore } from "@/stores/repositories-store";
+import { GitHubLink } from "../github-link/github-link";
 
 interface UserItemProps extends HTMLAttributes<HTMLDivElement> {
   item: GitHubUser;
@@ -14,8 +15,10 @@ interface UserItemProps extends HTMLAttributes<HTMLDivElement> {
 export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(
   ({ item, ...props }, ref) => {
     const router = useRouter();
+    const store = useRepositoriesStore();
 
     const handleRepository = () => {
+      store.setUser(item);
       router.push(`/${item.login}`);
     };
     return (
@@ -33,13 +36,7 @@ export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(
         />
         <div className={styles.userInfo}>
           <div className={styles.login}>{item.login}</div>
-          <div>
-            <Link size={12} />
-            &nbsp;
-            <a href={item.htmlUrl} target="_blank" className={styles.url}>
-              {item.htmlUrl}
-            </a>
-          </div>
+          <GitHubLink href={item.htmlUrl} />
         </div>
         <div className={styles.repositoryButtonContainer}>
           <Button type="button" onClick={handleRepository}>

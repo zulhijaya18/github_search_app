@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import styles from "./button.module.css";
 import { cx } from "class-variance-authority";
 
-type ButtonProps = React.ComponentProps<"button"> & {
+export type ButtonProps = React.ComponentProps<"button"> & {
   type?: "button" | "submit" | "reset";
 };
 

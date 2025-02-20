@@ -40,29 +40,25 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <div>
-          <h1>GitHub Search</h1>
-          <p>Find GitHub users based on a keyword</p>
-        </div>
-        <div className={styles.searchContainer}>
-          <Searchbar
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <Button type="button" onClick={handleSearch}>
-            Search
-          </Button>
-        </div>
-        {store.items && store.items.length > 0 && (
-          <div className={styles.itemsFound}>
-            {store.totalCount} users found
-          </div>
-        )}
-        <ListUser />
-      </main>
+    <div className={styles.main}>
+      <div>
+        <h1>GitHub Search</h1>
+        <p>Find GitHub users based on a keyword</p>
+      </div>
+      <div className={styles.searchContainer}>
+        <Searchbar
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <Button type="button" onClick={handleSearch}>
+          Search
+        </Button>
+      </div>
+      {store.items && store.items.length > 0 && (
+        <div className={styles.itemsFound}>{store.totalCount} users found</div>
+      )}
+      <ListUser />
     </div>
   );
 }

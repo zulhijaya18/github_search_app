@@ -1,9 +1,9 @@
-.listUser {
+.listRepository {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.listUser:empty {
+.listRepository:empty {
     max-height: 0;
 }

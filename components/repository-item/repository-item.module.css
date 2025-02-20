@@ -1,0 +1,40 @@
+.repositoryItemContainer {
+    padding: 8px 12px;
+    border: 1px solid var(--button-primary-hover);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+}
+
+.repositoryItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.repositoryItemContainer:hover {
+    background-color: var(--button-secondary-hover);
+}
+
+.name {
+    /* cursor: pointer; */
+}
+
+.description, .language, .stargazersCount, .watchersCount, .forksCount, .license {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.repositoryHighLight {
+    margin-top: 8px;
+    display: flex;
+    gap: 24px;
+}
+
+.readMeButton {
+    text-wrap: nowrap;
+}
