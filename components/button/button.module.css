@@ -6,6 +6,7 @@
     background-color: var(--button-secondary-hover);
     cursor: pointer;
     font-size: 14px;
+    color: var(--foreground);
     display: flex;
     align-items: center;
     gap: 4px;
