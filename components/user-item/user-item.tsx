@@ -19,6 +19,7 @@ export const UserItem = forwardRef<HTMLDivElement, UserItemProps>(
 
     const handleRepository = () => {
       store.setUser(item);
+      store.setItems();
       router.push(`/${item.login}`);
     };
     return (

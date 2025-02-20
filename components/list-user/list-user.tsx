@@ -10,7 +10,7 @@ type ListUserProps = HTMLAttributes<HTMLDivElement>;
 export const ListUser = forwardRef<HTMLDivElement, ListUserProps>(
   ({ ...props }, ref) => {
     const store = useUsersStore();
-    const items = store.items;
+    const { items, isFetching } = store;
     return (
       <div
         ref={ref}
@@ -20,6 +20,7 @@ export const ListUser = forwardRef<HTMLDivElement, ListUserProps>(
         {items?.map((item) => (
           <UserItem key={item.id} item={item} />
         ))}
+        {isFetching && <div>Loading...</div>}
         {items?.length === 0 && <div>No users found</div>}
       </div>
     );

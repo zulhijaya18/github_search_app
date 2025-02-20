@@ -16,7 +16,7 @@ import { GitHubLink } from "@/components/github-link/github-link";
 export default function Repository() {
   const username = usePathname().split("/")[1];
   const store = useRepositoriesStore();
-  useQuery({
+  const { isLoading } = useQuery({
     queryKey: ["repos", username],
     queryFn: async () => {
       const response = await apiClient.get<GitHubRepository[]>(
@@ -51,7 +51,7 @@ export default function Repository() {
         <BookMarked size={18} />
         Repositories
       </div>
-      <ListRepository />
+      <ListRepository isLoading={isLoading} />
     </div>
   );
 }

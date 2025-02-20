@@ -26,6 +26,17 @@ export default function Home() {
       store.setItems(data.items);
       store.setTotalCount(data.totalCount);
     },
+    onMutate: () => {
+      store.reset();
+      store.setIsFetching(true);
+    },
+    onError: (error) => {
+      console.error(error);
+      store.setIsFetching(false);
+    },
+    onSettled: () => {
+      store.setIsFetching(false);
+    },
   });
 
   const handleSearch = () => {

@@ -13,10 +13,11 @@ interface State {
 
 interface Action {
   setUser: (user: GitHubUser) => void;
-  setItems: (items: GitHubRepository[]) => void;
+  setItems: (items?: GitHubRepository[]) => void;
   setRepository: (repository: GitHubRepository) => void;
   setPage: (page: number) => void;
   setPerPage: (perPage: number) => void;
+  reset: () => void;
 }
 
 export const useRepositoriesStore = create<State & Action>()(
@@ -28,10 +29,15 @@ export const useRepositoriesStore = create<State & Action>()(
       page: 1,
       perPage: 10,
       setUser: (user: GitHubUser) => set({ user }),
-      setItems: (items: GitHubRepository[]) => set({ items }),
+      setItems: (items?: GitHubRepository[]) => set({ items }),
       setRepository: (repository: GitHubRepository) => set({ repository }),
       setPage: (page: number) => set({ page }),
       setPerPage: (perPage: number) => set({ perPage }),
+      reset: () =>
+        set({
+          page: 1,
+          perPage: 10,
+        }),
     }),
     {
       name: "repositories-store",

@@ -17,7 +17,7 @@ export default function RepositoryReadMe() {
   const repositoryName = usePathname().split("/")[2];
   const store = useRepositoriesStore();
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["read-me", repositoryName],
     queryFn: async () => {
       const response = await apiClient.get<ReadMeEntity>(`/api/read-me`, {
@@ -55,9 +55,13 @@ export default function RepositoryReadMe() {
         </div>
       </div>
       <RepositoryItem item={store.repository!} showButton={false} />
-      <div className={styles.md}>
-        <MD content={content} />
-      </div>
+      {isLoading && <div>Loading...</div>}
+      {!isLoading && !content && <div>Readme not found</div>}
+      {!isLoading && (
+        <div className={styles.md}>
+          <MD content={content} />
+        </div>
+      )}
     </div>
   );
 }
